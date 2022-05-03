@@ -69,9 +69,15 @@ class Show
      */
     private $users;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=category::class, inversedBy="shows")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,6 +216,30 @@ class Show
         if ($this->users->removeElement($user)) {
             $user->removeShow($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(category $category): self
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }
