@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +52,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=show::class, inversedBy="users")
+     */
+    private $show;
+
+    public function __construct()
+    {
+        $this->show = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -172,6 +184,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, show>
+     */
+    public function getShow(): Collection
+    {
+        return $this->show;
+    }
+
+    public function addShow(show $show): self
+    {
+        if (!$this->show->contains($show)) {
+            $this->show[] = $show;
+        }
+
+        return $this;
+    }
+
+    public function removeShow(show $show): self
+    {
+        $this->show->removeElement($show);
 
         return $this;
     }
