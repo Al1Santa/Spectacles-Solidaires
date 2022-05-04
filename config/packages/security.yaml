@@ -20,6 +20,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\AppCustomAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -31,24 +36,27 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # page édition création 
-        # - { path: ^/back/.+/(create|edit), roles: ROLE_ADMIN}
+        - { path: ^/back/.+/(create|edit), roles: ROLE_ADMIN}
 
         # suppression que pour les admins
-        # - { path: ^/back/.+/\d+$, roles: ROLE_ADMIN, methods: [POST]}
+        - { path: ^/back/.+/\d+$, roles: ROLE_ADMIN, methods: [POST]}
 
+        - { path: ^/back/login, roles: PUBLIC_ACCESS }
         # back office pour les managers, uniquement en consultation
-        # - { path: ^/back/, roles: ROLE_MANAGER }
+        - { path: ^/back/, roles: ROLE_MANAGER }
 
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
-    # role_hierarchy:
-    #     ROLE_DEV : ROLE_ADMIN
-    #     # si j'ai le role ADMIN : j'ai aussi le role MANAGER
-    #     ROLE_ADMIN: ROLE_MANAGER
-    #     # si j'ai le role MANAGER : j'ai aussi le role USER
-    #     # si j'ai le role ADMIN: j'ai MANAGER ET USER
-    #     ROLE_MANAGER: ROLE_USER
+        
+
+    role_hierarchy:
+        ROLE_DEV : ROLE_ADMIN
+        # si j'ai le role ADMIN : j'ai aussi le role MANAGER
+        ROLE_ADMIN: ROLE_MANAGER
+        # si j'ai le role MANAGER : j'ai aussi le role USER
+        # si j'ai le role ADMIN: j'ai MANAGER ET USER
+        ROLE_MANAGER: ROLE_USER
 
 when@test:
     security:
