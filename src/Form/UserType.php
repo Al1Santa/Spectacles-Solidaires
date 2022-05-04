@@ -18,7 +18,7 @@ class UserType extends AbstractType
                 'choices' => [
                     'user' => 'ROLE_USER',
                     'admin' => 'ROLE_ADMIN',
-                    'moderateur' => 'ROLE_MODERATEUR',
+                    'manager' => 'ROLE_MANAGER',
                 ],
                 "multiple" => true,
                 // radio buttons or checkboxes
