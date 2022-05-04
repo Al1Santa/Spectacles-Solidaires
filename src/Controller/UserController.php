@@ -36,7 +36,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO : commentaire en anlais
+       
             $plaintextPassword = $user->getPassword();
 
             // hash the password (based on the security.yaml config for the $user class)
