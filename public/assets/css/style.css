@@ -34,6 +34,29 @@ nav{
     width: 30vh;
 }
 
+.login_form h1{
+    font-size: 3em;
+}
+.login_form label{
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+.login_form input{
+    margin-bottom: 10px;
+}
+.login_form button{
+    margin-top: 10px;
+}
+
 .container-fluid{
     height: 100vh;
 }
+
+.row{
+    border: #DF966D 3px solid;
+    border-radius: 30px;
+    box-shadow: #DF966D 10px 5px 5px;
+    width: auto;
+    padding: 3em 4em 3em 4em;
+}
+
