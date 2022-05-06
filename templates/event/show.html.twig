@@ -1,58 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Event{% endblock %}
+{% block title %}Evènement{% endblock %}
 
 {% block body %}
-    <h1>Event</h1>
+    <div id="container"> 
+        <div id="body_title">
+            <h1>Evènement</h1>
+        </div>
+        <div id="body_create">
+            <a href="{{ path('app_event_index') }}">retour</a>
+            <a href="{{ path('app_event_edit', {'id': event.id}) }}">modifier</a>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ event.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ event.content }}</td>
-            </tr>
-            <tr>
-                <th>Link_video</th>
-                <td>{{ event.linkVideo }}</td>
-            </tr>
-            <tr>
-                <th>Link_sound</th>
-                <td>{{ event.linkSound }}</td>
-            </tr>
-            <tr>
-                <th>Picture_1</th>
-                <td>{{ event.picture1 }}</td>
-            </tr>
-            <tr>
-                <th>Picture_2</th>
-                <td>{{ event.picture2 }}</td>
-            </tr>
-            <tr>
-                <th>Picture_3</th>
-                <td>{{ event.picture3 }}</td>
-            </tr>
-            <tr>
-                <th>Time</th>
-                <td>{{ event.time ? event.time|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ event.age }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_event_index') }}">back to list</a>
-
-    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
-
-    {{ include('event/_delete_form.html.twig') }}
+        <div id="body_table">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ event.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ event.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Content</th>
+                        <td>{{ event.content }}</td>
+                    </tr>
+                    <tr>
+                        <th>Link_video</th>
+                        <td>{{ event.linkVideo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Link_sound</th>
+                        <td>{{ event.linkSound }}</td>
+                    </tr>
+                    <tr>
+                        <th>Picture_1</th>
+                        <td>{{ event.picture1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Picture_2</th>
+                        <td>{{ event.picture2 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Picture_3</th>
+                        <td>{{ event.picture3 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <td>{{ event.time ? event.time|date('H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ event.age }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {{ include('event/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
- <div id="container"> 
-
+    <div id="container"> 
         <div id="body_title">
-            <h1>Category index</h1>
+            <h1>Liste des catégories</h1>
         </div>
 
         <div id="body_create">
@@ -14,6 +13,7 @@
         </div>
 
             <div id="body_table">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -26,9 +26,9 @@
                         <tr>
                             <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
-                            <td>
-                                <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                                <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+                            <td id="categoryActions">
+                                <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn-actions">show</a>
+                                <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn-actions">edit</a>
                             </td>
                         </tr>
                     {% else %}

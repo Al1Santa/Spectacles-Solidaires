@@ -40,7 +40,7 @@ header{
     font-size: 2em;
 }
 
-/* FORM */
+/* CONNEXION */
 .login_form{
     width: 30vh;
 }
@@ -114,6 +114,31 @@ body > h1{
     background-color: #eed1c0;
 }
 
+#body_delete{
+    border: 1px black solid;
+    background-color: rgb(255, 0, 0);
+    font-size: 20px;
+    padding: 0.3em;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+#body_formSave{
+    border: 1px black solid;
+    background-color: rgb(255, 0, 0);
+    font-size: 20px;
+    padding: 0.3em;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
 #body_table a{
     border: 1px black solid;
     font-size: 15px;
@@ -138,4 +163,26 @@ body > h1{
 
 #body_table{
     background-color: #eff0f4;
+}
+
+.btn-actions{
+    width: 30%;
+}
+
+#categoryActions{
+    display: flex;
+}
+
+#categoryActions a:first-child{
+    margin-right: 5px;
+}
+
+#categoryActions a:last-child{
+    margin-bottom: 10px;
+}
+
+/* FORM  */
+
+.my-custom-widget{
+    background-color: blue;
 }

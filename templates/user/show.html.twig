@@ -8,8 +8,8 @@
             <h1>Utilisateur</h1>
         </div>
         <div id="body_create">
-            <a href="{{ path('app_user_index') }}">back to list</a>
-            <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+            <a href="{{ path('app_user_index') }}">retour</a>
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}">modifier</a>
         </div>
 
         <div id="body_table">
@@ -41,7 +41,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+            {{ include('user/_delete_form.html.twig') }}
+        </div>  
     </div>
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
