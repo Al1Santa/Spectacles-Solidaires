@@ -1,43 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste des Utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <div id="container"> 
+        <div id="body_title">
+            <h1>Liste des Utilisateurs</h1>
+        </div>
+        <div id="body_create">
+            <a href="{{ path('app_user_new') }}">nouvel utilisateur</a>
+        </div>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Avatar</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.avatar }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">voir +</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div id="body_table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td>
+                            <a href="{{ path('app_user_show', {'id': user.id}) }}">voir +</a>
+                            <a href="{{ path('app_user_edit', {'id': user.id}) }}">modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
