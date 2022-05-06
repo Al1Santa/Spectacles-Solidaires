@@ -68,6 +68,7 @@ class Event
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="events")
      */
     private $category;
+    
 
     public function __construct()
     {
