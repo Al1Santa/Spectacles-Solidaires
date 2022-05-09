@@ -1,7 +1,11 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <div class="my-custom-widget">
-    {# TODO #}
-    </div>
-    <button class="btn" id="body_formSave">{{ button_label|default('valider') }}</button>
-{{ form_end(form) }}
+ {% form_theme form 'bootstrap_5_layout.html.twig' %}
+ <div class="container"> 
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <div class="my-custom-widget">
+        </div>
+        
+        <button class="btn" id="body_formSave">{{ button_label|default('valider') }}</button>
+    {{ form_end(form) }}
+</div>
