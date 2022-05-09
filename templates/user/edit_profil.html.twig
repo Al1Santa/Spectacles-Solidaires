@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un Profil{% endblock %}
+
+{% block body %}
+    <div id="container"> 
+        <div id="body_title">
+            <h1>Modifier un Profil</h1>
+        </div>
+
+        <div id="body_create">
+            <a href="{{ path('app_user_profil',{'id': app.user.id}) }}">retour</a>
+        </div>
+
+
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+       
+        
+    </div>
+{% endblock %}

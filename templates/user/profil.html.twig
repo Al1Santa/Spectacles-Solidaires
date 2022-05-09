@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <div id="container"> 
+        <div id="body_title">
+            <h1>Mon Profil</h1>
+        </div>
+        
+        <div id="body_create">
+            <a href="{{ path('app_user_edit_profil', {'id': app.user.id}) }}">Modifier mon profil</a>
+            <a href="{{ path('app_user_edit_password', {'id': app.user.id}) }}">Modifier mon mot de passe</a> 
+        </div>
+
+        <div id="body_table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+         
+                    <tr>
+                        <td>{{ app.user.id }}</td>
+                        <td>{{ app.user.email }}</td>
+                        <td>{{ app.user.roles ? user.roles|json_encode : '' }}</td>
+                        <td>{{ app.user.firstname }}</td>
+                        <td>{{ app.user.lastname }}</td>
+                    </tr>
+               
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

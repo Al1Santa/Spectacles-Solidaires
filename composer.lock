@@ -1227,16 +1227,16 @@
         },
         {
             "name": "doctrine/persistence",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "b7f12af9973c3861ca5489dd065c85fb2b99436c"
+                "reference": "25ec98a8cbd1f850e60fdb62c0ef77c162da8704"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/b7f12af9973c3861ca5489dd065c85fb2b99436c",
-                "reference": "b7f12af9973c3861ca5489dd065c85fb2b99436c",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/25ec98a8cbd1f850e60fdb62c0ef77c162da8704",
+                "reference": "25ec98a8cbd1f850e60fdb62c0ef77c162da8704",
                 "shasum": ""
             },
             "require": {
@@ -1308,7 +1308,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/persistence/issues",
-                "source": "https://github.com/doctrine/persistence/tree/3.0.1"
+                "source": "https://github.com/doctrine/persistence/tree/3.0.2"
             },
             "funding": [
                 {
@@ -1324,7 +1324,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-02T17:41:58+00:00"
+            "time": "2022-05-06T06:10:05+00:00"
         },
         {
             "name": "doctrine/sql-formatter",
@@ -1380,18 +1380,6 @@
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
-<<<<<<< HEAD
-            "version": "v1.0.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfPHP/proxy-manager-lts.git",
-                "reference": "d1eadf86d5b843c496614ef075a8f655a880f1d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/proxy-manager-lts/zipball/d1eadf86d5b843c496614ef075a8f655a880f1d8",
-                "reference": "d1eadf86d5b843c496614ef075a8f655a880f1d8",
-=======
             "version": "v1.0.12",
             "source": {
                 "type": "git",
@@ -1402,7 +1390,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfPHP/proxy-manager-lts/zipball/8419f0158715b30d4b99a5bd37c6a39671994ad7",
                 "reference": "8419f0158715b30d4b99a5bd37c6a39671994ad7",
->>>>>>> c4df945eca5c1293c6c602aab2e67ec84955684c
                 "shasum": ""
             },
             "require": {
@@ -1459,11 +1446,7 @@
             ],
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/proxy-manager-lts/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/FriendsOfPHP/proxy-manager-lts/tree/v1.0.11"
-=======
                 "source": "https://github.com/FriendsOfPHP/proxy-manager-lts/tree/v1.0.12"
->>>>>>> c4df945eca5c1293c6c602aab2e67ec84955684c
             },
             "funding": [
                 {
@@ -1475,11 +1458,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2022-05-04T11:03:58+00:00"
-=======
             "time": "2022-05-05T09:31:05+00:00"
->>>>>>> c4df945eca5c1293c6c602aab2e67ec84955684c
         },
         {
             "name": "laminas/laminas-code",
@@ -6347,5 +6326,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
