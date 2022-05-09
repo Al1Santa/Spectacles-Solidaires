@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Event;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +23,15 @@ class EventType extends AbstractType
             ->add('picture_3')
             ->add('time')
             ->add('age')
-            ->add('category')
+            ->add('category', EntityType::class, 
+            [
+                'class' => Category::class,
+                // https://symfony.com/doc/current/reference/forms/types/entity.html#choice-label
+                // Si j'ai plusieur champs : concatenation à faire
+                // je créer une function dans l'entité qui le fait
+                'choice_label' => 'name', // va apeller getName()
+                'mapped' => false
+            ])
         ;
     }
 

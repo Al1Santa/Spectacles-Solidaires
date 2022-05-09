@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  {% form_theme form 'bootstrap_5_layout.html.twig' %}
  <div class="container"> 
     {{ form_start(form) }}
@@ -9,3 +10,12 @@
         <button class="btn" id="body_formSave">{{ button_label|default('valider') }}</button>
     {{ form_end(form) }}
 </div>
+=======
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{{ form_start(form) }}
+<div class="container">
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    </div>
+{{ form_end(form) }}
+>>>>>>> c4df945eca5c1293c6c602aab2e67ec84955684c

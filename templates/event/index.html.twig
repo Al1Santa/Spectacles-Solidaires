@@ -3,6 +3,7 @@
 {% block title %}Liste des évènement{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
     <div id="container"> 
         <div id="body_title">
             <h1>Liste des évènements</h1>
@@ -55,4 +56,53 @@
             </table>
         </div>
     </div>
+=======
+
+    <h1>Event index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Link_video</th>
+                <th>Link_sound</th>
+                <th>Picture_1</th>
+                <th>Picture_2</th>
+                <th>Picture_3</th>
+                <th>Time</th>
+                <th>Age</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.title }}</td>
+                <td>{{ event.content }}</td>
+                <td>{{ event.linkVideo }}</td>
+                <td>{{ event.linkSound }}</td>
+                <td>{{ event.picture1 }}</td>
+                <td>{{ event.picture2 }}</td>
+                <td>{{ event.picture3 }}</td>
+                <td>{{ event.time ? event.time|date('H:i:s') : '' }}</td>
+                <td>{{ event.age }}</td>
+                <td>
+                    <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
+                    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_new') }}">Create new</a>
+
+>>>>>>> c4df945eca5c1293c6c602aab2e67ec84955684c
 {% endblock %}
