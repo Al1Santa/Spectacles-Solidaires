@@ -67,6 +67,6 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
         // donc l'authenticator ne 
         // return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getPathInfo();
     
-        return $request->isMethod('POST') && '/login' === $request->getPathInfo();
+        return $request->isMethod('POST') && '/back/login' === $request->getPathInfo();
     }
 }
