@@ -58,4 +58,15 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+    
+    public function supports(Request $request): bool
+    {
+        // le code du AbstractLoginFormAuthenticator
+        // dump($this->getLoginUrl($request)); // affiche avec un accès avec apache /symfo/oflix-JB-oclock/public/login
+        // dump($request->getPathInfo()); // affiche /login
+        // donc l'authenticator ne 
+        // return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getPathInfo();
+    
+        return $request->isMethod('POST') && '/login' === $request->getPathInfo();
+    }
 }
