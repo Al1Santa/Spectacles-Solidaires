@@ -70,7 +70,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_user_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -138,28 +138,28 @@ class UserController extends AbstractController
 
         $user = $userRepository->find($id);
 
-        $password = $user->getPassword();
+        // $password = $user->getPassword();
 
-        //TODO: récupérer le mot de passe que l'utilisateur entre dans le formulaire
-        $newPassword = $user->setPassword($password);
+        // //TODO: récupérer le mot de passe que l'utilisateur entre dans le formulaire
+        // $newPassword = $user->setPassword($password);
 
-        //TODO:  comparer le mot de pass de la DB avec celui de l'utilisateur
+        // //TODO:  comparer le mot de pass de la DB avec celui de l'utilisateur
 
-        if ($password === $newPassword && $form->isSubmitted() && $form->isValid()) {
-            $password = $newPassword;
-            $userRepository->add($password);
+        // if ($password === $newPassword && $form->isSubmitted() && $form->isValid()) {
+        //     $password = $newPassword;
+        //     $userRepository->add($password);
 
-            $userRepository->add($user);
-            return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
+        //     $userRepository->add($user);
+        //     return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
             
-        }
+        // }
 
         
    
 
         return $this->render('user/edit_password.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 }
