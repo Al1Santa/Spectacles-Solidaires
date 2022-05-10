@@ -16,10 +16,6 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-<<<<<<< HEAD
-            ->add('name')
-            // ->add('events')
-=======
             ->add('name', TextType::class, 
             [
                 "label" => "Nom de catégorie :",
@@ -33,7 +29,6 @@ class CategoryType extends AbstractType
                 'choice_label' => 'title', // va apeller getTitle()
                 'mapped' => false
             ])
->>>>>>> c4df945eca5c1293c6c602aab2e67ec84955684c
         ;
     }
 
