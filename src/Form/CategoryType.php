@@ -20,15 +20,18 @@ class CategoryType extends AbstractType
             [
                 "label" => "Nom de catégorie :",
             ])
-            ->add('events', EntityType::class, 
-            [
-                'class' => Event::class,
-                // https://symfony.com/doc/current/reference/forms/types/entity.html#choice-label
-                // Si j'ai plusieur champs : concatenation à faire
-                // je créer une function dans l'entité qui le fait
-                'choice_label' => 'title', // va apeller getTitle()
-                'mapped' => false
-            ])
+                    // ->add('events', EntityType::class, 
+            // [
+            //     'class' => Event::class,
+            //     // https://symfony.com/doc/current/reference/forms/types/entity.html#choice-label
+            //     // Si j'ai plusieur champs : concatenation à faire
+            //     // je créer une function dans l'entité qui le fait
+            //     'choice_label' => 'title', // va apeller getTitle()
+            //     "multiple" => true,
+            //     // https://symfony.com/doc/current/reference/forms/types/entity.html#expanded
+            //     // radio buttons or checkboxes
+            //     "expanded" => true,
+            // ])
         ;
     }
 
