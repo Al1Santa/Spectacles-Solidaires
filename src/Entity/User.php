@@ -22,32 +22,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("show_user")
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups("show_user")
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups("show_user")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups("show_user")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups("show_user")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("show_user")
      */
     private $avatar;
 
