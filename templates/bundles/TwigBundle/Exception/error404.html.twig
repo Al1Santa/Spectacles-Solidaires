@@ -2,10 +2,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Page not found</h1>
-
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('app_event_index') }}">return to the homepage</a>.
-    </p>
+    <div id="container"> 
+        <div id="body_title">
+            <h1>Page not found</h1>
+        </div>
+        <div id="body_create">
+             <p>
+                The requested page couldn't be located. Checkout for any URL
+                misspelling or <a href="{{ path('app_event_index') }}">return to the homepage</a>.
+            </p>
+        </div>
+   
+    </div>
 {% endblock %}

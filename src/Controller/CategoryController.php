@@ -36,6 +36,15 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->add($category);
+
+            // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                'Votre Category a bien été enregistrée.' // le message
+            );
+
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,6 +74,15 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->add($category);
+
+            // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                'Votre Catégorie a bien été modifiée.' // le message
+            );
+
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -81,6 +99,14 @@ class CategoryController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
             $categoryRepository->remove($category);
+
+              // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                'Votre Catégorie a bien été supprimé.' // le message
+            );
         }
 
         return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);

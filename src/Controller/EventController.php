@@ -36,6 +36,15 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $eventRepository->add($event);
+
+              // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                'Votre évènement a bien été crée.' // le message
+            );
+
             return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,6 +74,15 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $eventRepository->add($event);
+
+              // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                'Votre évènement a bien été modifié.' // le message
+            );
+
             return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -81,6 +99,14 @@ class EventController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->request->get('_token'))) {
             $eventRepository->remove($event);
+
+              // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                'Votre évènement a bien été supprimé.' // le message
+            );
         }
 
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);

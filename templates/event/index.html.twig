@@ -7,6 +7,17 @@
         <div id="body_title">
             <h1>Liste des évènements</h1>
         </div>
+                {# 
+            pour acceder a des infos venant de l'application
+            on a à notre dsposition la variable 'app'
+            et pour les flashMessage a une méthode flashes('type')
+            on a dit que c'était un tableau, on peut donc boucler dessus
+            #}
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
         <div id="body_create">
             <a href="{{ path('app_event_new') }}">nouvel évènement</a>
         </div>
