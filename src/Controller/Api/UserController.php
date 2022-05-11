@@ -6,11 +6,13 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Annotations as OA;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/api/user", name="app_api_user")
+     * @Route("/api/user", name="app_api_user", methods={"GET"})
      */
     public function index(UserRepository $repo): Response
     {

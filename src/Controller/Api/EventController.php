@@ -6,11 +6,13 @@ use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Annotations as OA;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 class EventController extends AbstractController
 {
     /**
-     * @Route("/api/event", name="app_api_event")
+     * @Route("/api/event", name="app_api_event", methods={"GET"})
      */
     public function index(EventRepository $repo): Response
     {
