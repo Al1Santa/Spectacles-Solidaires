@@ -85,7 +85,7 @@ class Event
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
+     $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
