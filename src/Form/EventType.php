@@ -30,7 +30,10 @@ class EventType extends AbstractType
                 // Si j'ai plusieur champs : concatenation à faire
                 // je créer une function dans l'entité qui le fait
                 'choice_label' => 'name', // va apeller getName()
-                'mapped' => false
+                    "multiple" => true,
+                // https://symfony.com/doc/current/reference/forms/types/entity.html#expanded
+                // radio buttons or checkboxes
+                "expanded" => true,
             ])
         ;
     }
