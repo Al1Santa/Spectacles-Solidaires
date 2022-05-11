@@ -6,6 +6,8 @@ use App\Repository\EventRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
@@ -21,51 +23,62 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups("show_category")
+     * @Groups("show_event")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("show_event")
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("show_event")
      */
     private $link_video;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("show_event")
      */
     private $link_sound;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("show_event")
      */
     private $picture_1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("show_event")
      */
     private $picture_2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("show_event")
      */
     private $picture_3;
 
     /**
      * @ORM\Column(type="time")
+     * @Groups("show_event")
      */
     private $time;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups("show_event")
      */
     private $age;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="events")
+     * @Groups("show_event")
      */
     private $category;
     
