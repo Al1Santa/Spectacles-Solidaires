@@ -18,6 +18,7 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Content</th>
+                        <th>Content 2</th>
                         <th>Link_video</th>
                         <th>Link_sound</th>
                         <th>Picture_1</th>
@@ -25,7 +26,12 @@
                         <th>Picture_3</th>
                         <th>Time</th>
                         <th>Age</th>
+                        <th>Technique 1</th>
+                        <th>Technique 2</th>
+                        <th>Technique 3</th>
                         <th>actions</th>
+                        <th>Bonus 1</th>
+                        <th>Bonus 2</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +40,7 @@
                         <td>{{ event.id }}</td>
                         <td>{{ event.title }}</td>
                         <td>{{ event.content }}</td>
+                        <td>{{ event.content2 }}</td>
                         <td>{{ event.linkVideo }}</td>
                         <td>{{ event.linkSound }}</td>
                         <td>{{ event.picture1 }}</td>
@@ -41,6 +48,11 @@
                         <td>{{ event.picture3 }}</td>
                         <td>{{ event.time ? event.time|date('H:i:s') : '' }}</td>
                         <td>{{ event.age }}</td>
+                        <td>{{ event.technique1}}</td>
+                        <td>{{ event.technique2 }}</td>
+                        <td>{{ event.technique3 }}</td>
+                        <td>{{ event.bonus1 }}</td>
+                        <td>{{ event.bonus2 }}</td>
                         <td>
                             <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
                             <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>

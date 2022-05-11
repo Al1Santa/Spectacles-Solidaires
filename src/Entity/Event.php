@@ -29,6 +29,11 @@ class Event
      */
     private $content;
 
+       /**
+     * @ORM\Column(type="text")
+     */
+    private $content_2;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -60,16 +65,41 @@ class Event
     private $time;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $age;
+
+     /**
+     * @ORM\Column(type="text")
+     */
+    private $technique_1;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $technique_2;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $technique_3;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="events")
      */
     private $category;
-    
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $bonus_1;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $bonus_2;
+
+   
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -176,12 +206,12 @@ class Event
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getAge(): ?string
     {
         return $this->age;
     }
 
-    public function setAge(?int $age): self
+    public function setAge(?string $age): self
     {
         $this->age = $age;
 
@@ -208,6 +238,78 @@ class Event
     public function removeCategory(Category $category): self
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getContent2(): ?string
+    {
+        return $this->content_2;
+    }
+
+    public function setContent2(string $content_2): self
+    {
+        $this->content_2 = $content_2;
+
+        return $this;
+    }
+
+    public function getTechnique1(): ?string
+    {
+        return $this->technique_1;
+    }
+
+    public function setTechnique1(string $technique_1): self
+    {
+        $this->technique_1 = $technique_1;
+
+        return $this;
+    }
+
+    public function getTechnique2(): ?string
+    {
+        return $this->technique_2;
+    }
+
+    public function setTechnique2(string $technique_2): self
+    {
+        $this->technique_2 = $technique_2;
+
+        return $this;
+    }
+
+    public function getTechnique3(): ?string
+    {
+        return $this->technique_3;
+    }
+
+    public function setTechnique3(string $technique_3): self
+    {
+        $this->technique_3 = $technique_3;
+
+        return $this;
+    }
+
+    public function getBonus1(): ?string
+    {
+        return $this->bonus_1;
+    }
+
+    public function setBonus1(?string $bonus_1): self
+    {
+        $this->bonus_1 = $bonus_1;
+
+        return $this;
+    }
+
+    public function getBonus2(): ?string
+    {
+        return $this->bonus_2;
+    }
+
+    public function setBonus2(?string $bonus_2): self
+    {
+        $this->bonus_2 = $bonus_2;
 
         return $this;
     }

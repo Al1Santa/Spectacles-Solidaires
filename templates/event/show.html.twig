@@ -28,6 +28,10 @@
                         <td>{{ event.content }}</td>
                     </tr>
                     <tr>
+                        <th>Content 2</th>
+                        <td>{{ event.content2 }}</td>
+                    </tr>
+                    <tr>
                         <th>Link_video</th>
                         <td>{{ event.linkVideo }}</td>
                     </tr>
@@ -55,6 +59,18 @@
                         <th>Age</th>
                         <td>{{ event.age }}</td>
                     </tr>
+                    <tr>
+                        <th>Technique 1</th>
+                        <td>{{ event.technique1 }}</td>     
+                    </th>               
+                    <tr>
+                        <th>Technique 2</th>
+                        <td>{{ event.technique2 }}</td>     
+                    </th>               
+                    <tr>
+                        <th>Technique 3</th>
+                        <td>{{ event.technique3 }}</td>     
+                    </th>               
                 </tbody>
             </table>
             {{ include('event/_delete_form.html.twig') }}
