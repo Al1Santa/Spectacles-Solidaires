@@ -16,6 +16,7 @@ class EventType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
+            ->add('content_2')
             ->add('link_video')
             ->add('link_sound')
             ->add('picture_1')
@@ -23,6 +24,9 @@ class EventType extends AbstractType
             ->add('picture_3')
             ->add('time')
             ->add('age')
+            ->add('technique_1')
+            ->add('technique_2')
+            ->add('technique_3')
             ->add('category', EntityType::class, 
             [
                 'class' => Category::class,
@@ -30,7 +34,7 @@ class EventType extends AbstractType
                 // Si j'ai plusieur champs : concatenation à faire
                 // je créer une function dans l'entité qui le fait
                 'choice_label' => 'name', // va apeller getName()
-                "multiple" => true,
+                    "multiple" => true,
                 // https://symfony.com/doc/current/reference/forms/types/entity.html#expanded
                 // radio buttons or checkboxes
                 "expanded" => true,

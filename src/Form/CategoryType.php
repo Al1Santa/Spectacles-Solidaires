@@ -20,7 +20,7 @@ class CategoryType extends AbstractType
             [
                 "label" => "Nom de catégorie :",
             ])
-            // ->add('events', EntityType::class, 
+                    // ->add('events', EntityType::class, 
             // [
             //     'class' => Event::class,
             //     // https://symfony.com/doc/current/reference/forms/types/entity.html#choice-label

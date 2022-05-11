@@ -12,6 +12,19 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 class EventController extends AbstractController
 {
     /**
+     * Liste toutes les evenements 
+     * 
+     * @OA\Response(
+     *     response=200,
+     *     description="Affiches tous les evenements",
+    
+     * )
+     * 
+     * @OA\Response(
+     *     response=404,
+     *     description="evenement not found"
+     * )
+     * @param EventRepository $eventRepository
      * @Route("/api/event", name="app_api_event", methods={"GET"})
      */
     public function index(EventRepository $repo): Response

@@ -24,6 +24,7 @@ class Category
      * @ORM\Column(type="string", length=32)
      * @Groups("show_category")
      * @Groups("show_category_event")
+     * @Groups("show_event")
      */
     private $name;
 
