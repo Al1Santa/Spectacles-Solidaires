@@ -23,12 +23,13 @@ class Category
     /**
      * @ORM\Column(type="string", length=32)
      * @Groups("show_category")
+     * @Groups("show_category_event")
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="category")
-     * @Groups("show_category")
+     * @Groups("show_category_event")
      */
     private $events;
 

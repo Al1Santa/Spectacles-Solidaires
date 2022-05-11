@@ -23,7 +23,7 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Groups("show_category")
+     * @Groups("show_category_event")
      * @Groups("show_event")
      */
     private $title;
