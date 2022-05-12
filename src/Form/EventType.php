@@ -39,7 +39,10 @@ class EventType extends AbstractType
                 // radio buttons or checkboxes
                 "expanded" => true,
             ])
+            ->add('bonus_1')
+            ->add('bonus_2')
         ;
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void
