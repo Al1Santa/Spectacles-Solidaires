@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Entity\User;
 use App\Form\UserType;
 use Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -62,89 +63,117 @@ class UserController extends AbstractController
     );
     }
 
-//     /**
-//      * Modifier les données utilisateur
-//      * 
-//      * @Route("/api/user/update", name="app_api_user_update", methods={"PUT"})
-//      * 
-//      * @OA\RequestBody(
-//      *     @Model(type=UserType::class)
-//      * )
-//      * 
-//      * @OA\Response(
-//      *     response=201,
-//      *     description="new update user",
-//      *     @OA\JsonContent(
-//      *          ref=@Model(type=User::class, groups={"show_users"})
-//      *      )
-//      * )
-//      * 
-//      * @OA\Response(
-//      *     response=404,
-//      *     description="User not found"
-//      * )
-//      * @param UserRepository $userRepository
-//      *
-//      * @param Request $request infos venant de mon front/utilisateur
-//      * @param EntityManagerInterface $em
-//      * @param SerializerInterface $serializerInterface Permet de transformer du JSON en Objet
-//      * @return JsonRespons
-//      */
-//     public function createItem(Request $request, SerializerInterface $serializerInterface, EntityManagerInterface $em, ValidatorInterface $validator)
-//     {
-//      // TODO : Request parce que je vais recevoir des données
-//      $jsonContent = $request->getContent();
-//      // dump($jsonContent);
-//      // je transforme ces données en Entité
-//      //! la deserialisation ne respecte aucune règle (Assert sur notre entité)
-//      //? notre serializer peut faire des erreurs son notre front/utilisateur nous envoi du JSON mal formé
-//      try { // on espère que le serializerInterface arrive à relire le JSON
-//          $user = $serializerInterface->deserialize($jsonContent, User::class, 'json');
-//      } catch(Exception $e){ 
-//          //  si le serializerInterface n'arrive pas à relire le JSON on saute directement dans la partie Catch
+    /**
+     * Modifier les données utilisateur
+     * 
+     * @Route("/api/user/update/{id}", name="app_api_user_update", methods={"PUT"}, requirements={"id":"\d+"})
+     * 
+     * @OA\RequestBody(
+     *     @Model(type=UserType::class)
+     * )
+     * 
+     * @OA\Response(
+     *     response=201,
+     *     description="new update user",
+     *     @OA\JsonContent(
+     *          ref=@Model(type=User::class, groups={"show_users"})
+     *      )
+     * )
+     * 
+     * @OA\Response(
+     *     response=404,
+     *     description="User not found"
+     * )
+     * @param UserRepository $userRepository
+     *
+     * @param Request $request infos venant de mon front/utilisateur
+     * @param EntityManagerInterface $em
+     * @param SerializerInterface $serializerInterface Permet de transformer du JSON en Objet
+     * @return JsonRespons
+     */
+    public function updateUser(int $id, Request $request, SerializerInterface $serializerInterface, EntityManagerInterface $em, ValidatorInterface $validator, User $user, UserRepository $repo): JsonResponse
+    {
+
+        
+     // TODO : Request parce que je vais recevoir des données
+     $jsonContent = $request->getContent();
+
+     $updatedUser = json_decode($jsonContent);
+
+     $user = $repo->find($id);
+
+     $user->setEmail($updatedUser->email);
+     $user->setPassword($updatedUser->password);
+     $user->setFirstName($updatedUser->firstName);
+     $user->setLastname($updatedUser->lastName);
+     $user->setAvatar($updatedUser->avatar);
+     $em->flush();
+
+      return $this->json(
+         $user,
+         // je précise que tout est OK de mon coté en précisant que la cration c'est bien passé
+         // 201
+         Response::HTTP_CREATED,
+         [],
+         [
+             "groups" => 
+             [
+                 "show_users"
+             ]
+         ]
+     );
+   
+
+
+     // je transforme ces données en Entité
+     //! la deserialisation ne respecte aucune règle (Assert sur notre entité)
+     //? notre serializer peut faire des erreurs son notre front/utilisateur nous envoi du JSON mal formé
+     try { // on espère que le serializerInterface arrive à relire le JSON
+         $user = $serializerInterface->deserialize($jsonContent, User::class, 'json');
+     } catch(Exception $e){ 
+         //  si le serializerInterface n'arrive pas à relire le JSON on saute directement dans la partie Catch
          
-//          // erreur 422 : on ne peut pas traiter les infos qu'ils nous a donné
-//          return $this->json(
-//              "JSON mal formé",
-//              Response::HTTP_UNPROCESSABLE_ENTITY
-//          );
-//      }
+         // erreur 422 : on ne peut pas traiter les infos qu'ils nous a donné
+         return $this->json(
+             "JSON mal formé",
+             Response::HTTP_UNPROCESSABLE_ENTITY
+         );
+     }
      
-//      // dd($genre);
      
-//      // TODO : utiliser les Assert de notre entité pour valider la deserialisation
-//      // le validator nous renvoit la liste de toutes les erreurs
-//      $errorList = $validator->validate($user);
+     // TODO : utiliser les Assert de notre entité pour valider la deserialisation
+     // le validator nous renvoit la liste de toutes les erreurs
+     $errorList = $validator->validate($user);
 
-//      //je teste si il y a des erreurs 
-//      if (count($errorList) > 0){
-//          // j'ai des erreurs, l'utilisateur/front n'a pas respecter les Assert
-//          //? version bourrine : je transforme le tableau en chaine
-//          $errors = (string) $errorList;
+     //je teste si il y a des erreurs 
+     if (count($errorList) > 0){
+         // j'ai des erreurs, l'utilisateur/front n'a pas respecter les Assert
+         //? version bourrine : je transforme le tableau en chaine
+         $errors = (string) $errorList;
 
-//          // erreur 422 : on ne peut pas traiter les infos qu'ils nous a donné
-//          return $this->json(
-//              $errors,
-//              Response::HTTP_UNPROCESSABLE_ENTITY
-//          );
-//      }
+         // erreur 422 : on ne peut pas traiter les infos qu'ils nous a donné
+         return $this->json(
+             $errors,
+             Response::HTTP_UNPROCESSABLE_ENTITY
+         );
+     }
 
-//      // TODO : entityManagerInterface pour l'enregistrement
-//      $em->persist($user);
-//      $em->flush();
-//      // TODO : return json avec le bon code 201 (created)
-//      return $this->json(
-//          $user,
-//          // je précise que tout est OK de mon coté en précisant que la cration c'est bien passé
-//          // 201
-//          Response::HTTP_CREATED,
-//          [],
-//          [
-//              "groups" => 
-//              [
-//                  "show_users"
-//              ]
-//          ]
-//      );
-//  }
+     // TODO : entityManagerInterface pour l'enregistrement
+     $em->persist($user);
+     $em->flush();
+     // TODO : return json avec le bon code 201 (created)
+     return $this->json(
+         $user,
+         // je précise que tout est OK de mon coté en précisant que la cration c'est bien passé
+         // 201
+         Response::HTTP_CREATED,
+         [],
+         [
+             "groups" => 
+             [
+                 "show_users"
+             ]
+         ]
+     );
+ }
 }
