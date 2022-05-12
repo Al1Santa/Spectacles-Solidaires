@@ -14,6 +14,22 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                # a commenter
+                # bundle openAPI
+        nelmio_api_doc:
+            pattern: ^/api/doc
+            stateless: true
+        api:
+            pattern:   ^/api
+            stateless: true
+            jwt: ~
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -41,13 +57,16 @@ security:
         # suppression que pour les admins
         - { path: ^/back/.+/\d+$, roles: ROLE_ADMIN, methods: [POST]}
 
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/doc, roles: PUBLIC_ACCESS }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/back/login, roles: PUBLIC_ACCESS }
         # back office pour les managers, uniquement en consultation
         - { path: ^/back/, roles: ROLE_MANAGER }
 
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-
+       
         
 
     role_hierarchy:

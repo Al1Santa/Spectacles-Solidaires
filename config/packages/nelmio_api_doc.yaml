@@ -4,6 +4,49 @@ nelmio_api_doc:
             title: My App
             description: This is an awesome app!
             version: 1.0.0
+        # https://swagger.io/docs/specification/authentication/bearer-authentication/
+        components:
+            securitySchemes:
+                bearerAuth:            # arbitrary name for the security scheme this will be use in annotations @Security(name="bearerAuth")
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT 
+        security:
+            - bearerAuth: []
+     
+        # https://swagger.io/docs/specification/paths-and-operations/
+        paths: # documentation de la route pour obtenir le token lexkit
+            /api/login_check:
+                post:
+                    summary: Auth method
+                    description: authenticate method
+                    # https://swagger.io/docs/specification/grouping-operations-with-tags/
+                    tags:
+                        - My App API Auth
+                    # https://swagger.io/docs/specification/describing-parameters/
+                    requestBody:
+                        description: JSON Object
+                        required: true
+                        content: 
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        username:
+                                            type: string
+                                        password:
+                                            type: string
+                    responses:
+                        '200':
+                            description: JWT Token
+                            content:
+                                application/json:
+                                    schema: 
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+
         tags:
             - name: "Categories"
               description: "Accès aux categories"
@@ -14,3 +57,5 @@ nelmio_api_doc:
     areas: # to filter documented areas
         path_patterns:
             - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+
+        
