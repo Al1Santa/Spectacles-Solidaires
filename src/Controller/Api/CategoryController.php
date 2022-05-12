@@ -17,6 +17,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+
+/**
+ * @OA\Tag(name="Categories")
+ */
 class CategoryController extends AbstractController
 {
     /**

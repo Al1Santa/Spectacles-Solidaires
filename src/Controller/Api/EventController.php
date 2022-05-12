@@ -9,6 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Annotations as OA;
 use Nelmio\ApiDocBundle\Annotation\Model;
 
+
+
+/**
+ * @OA\Tag(name="Evenements")
+ */
 class EventController extends AbstractController
 {
     /**
