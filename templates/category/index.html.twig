@@ -33,7 +33,7 @@
                 {% for category in categories %}
                     <tr>
                         <td>{{ category.name }}</td>
-                        <td id="categoryActions">
+                        <td>
                             <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn-actions">Voir</a>
                             <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn-actions">Modifier</a>
                         </td>

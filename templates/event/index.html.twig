@@ -32,11 +32,9 @@
                 <tbody>
                 {% for event in events %}
                     <tr>
-                        <td>{{ event.title }}
-                    </td>
-        
+                        <td>{{ event.title }}</td>
                         <td>
-                            <a href="{{ path('app_event_show', {'id': event.id}) }}">voir</a>
+                            <a href="{{ path('app_event_show', {'id': event.id}) }}">voir +</a>
                             <a href="{{ path('app_event_edit', {'id': event.id}) }}">modifier</a>
                         </td>
                     </tr>
