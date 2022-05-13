@@ -187,13 +187,13 @@ class UserController extends AbstractController
 
      $updatedUser = json_decode($jsonContent);
     
-     dump($updatedUser);
+
      $user = $repo->find($id);
 
      $user->setEmail($updatedUser->email);
      $user->setPassword($updatedUser->password);
-     $user->setFirstName($updatedUser->firstName);
-     $user->setLastName($updatedUser->lastName);
+     $user->setFirstName($updatedUser->firstname);
+     $user->setLastName($updatedUser->lastname);
      $user->setAvatar($updatedUser->avatar);
 
      $em->flush();
