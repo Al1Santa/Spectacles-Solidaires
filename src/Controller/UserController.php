@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserPassType;
+use App\Form\UserUpdateType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,7 +83,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $hasher): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserUpdateType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -141,7 +143,7 @@ class UserController extends AbstractController
     public function editProfil(int $id, Request $request, User $user, UserRepository $userRepository): Response
     {
         $user =$userRepository->find($id);
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserUpdateType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -160,7 +162,7 @@ class UserController extends AbstractController
      */
     public function editPassword(int $id, UserRepository $userRepository, User $user, Request $request): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserPassType::class, $user);
         $form->handleRequest($request);
 
         $user = $userRepository->find($id);
