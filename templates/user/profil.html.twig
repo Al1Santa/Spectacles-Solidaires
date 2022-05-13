@@ -18,18 +18,16 @@
                 <thead>
                     <tr>
                         <th>Email</th>
-                        <th>Roles</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>actions</th>
+                        {# <th>Roles</th> #}
+                        <th>Prénom</th>
+                        <th>Nom</th>
                     </tr>
                 </thead>
                 <tbody>
          
                     <tr>
-                        <td>{{ app.user.id }}</td>
                         <td>{{ app.user.email }}</td>
-                        <td>{{ app.user.roles ? user.roles|json_encode : '' }}</td>
+                        {# <td>{{ app.user.roles ? user.roles|json_encode : '' }}</td> #}
                         <td>{{ app.user.firstname }}</td>
                         <td>{{ app.user.lastname }}</td>
                     </tr>

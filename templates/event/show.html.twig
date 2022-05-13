@@ -20,39 +20,39 @@
                         <td>{{ event.id }}</td>
                     </tr>
                     <tr>
-                        <th>Title</th>
+                        <th>Titre</th>
                         <td>{{ event.title }}</td>
                     </tr>
                     <tr>
-                        <th>Content</th>
+                        <th>Contenu 1</th>
                         <td>{{ event.content }}</td>
                     </tr>
                     <tr>
-                        <th>Content 2</th>
+                        <th>Contenu 2</th>
                         <td>{{ event.content2 }}</td>
                     </tr>
                     <tr>
-                        <th>Link_video</th>
+                        <th>Lien de la vidéo</th>
                         <td>{{ event.linkVideo }}</td>
                     </tr>
                     <tr>
-                        <th>Link_sound</th>
+                        <th>Lien de la bande sonore</th>
                         <td>{{ event.linkSound }}</td>
                     </tr>
                     <tr>
-                        <th>Picture_1</th>
+                        <th>Photo 1</th>
                         <td>{{ event.picture1 }}</td>
                     </tr>
                     <tr>
-                        <th>Picture_2</th>
+                        <th>Photo 2</th>
                         <td>{{ event.picture2 }}</td>
                     </tr>
                     <tr>
-                        <th>Picture_3</th>
+                        <th>Photo 3</th>
                         <td>{{ event.picture3 }}</td>
                     </tr>
                     <tr>
-                        <th>Time</th>
+                        <th>Temps du spectacle</th>
                         <td>{{ event.time ? event.time|date('H:i:s') : '' }}</td>
                     </tr>
                     <tr>
@@ -71,6 +71,14 @@
                         <th>Technique 3</th>
                         <td>{{ event.technique3 }}</td>     
                     </th>               
+                    <tr>
+                        <th>Bonus 1</th>
+                        <td>{{ event.bonus1 }}</td>     
+                    </th>               
+                     <tr>
+                        <th>Bonus 2</th>
+                        <td>{{ event.bonus2 }}</td>     
+                    </th>              
                 </tbody>
             </table>
             {{ include('event/_delete_form.html.twig') }}
