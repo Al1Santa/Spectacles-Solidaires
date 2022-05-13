@@ -15,34 +15,28 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Email</th>
-                        <th>Roles</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>actions</th>
+                        <th>profil</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     <tr>
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                        <td>{{ user.firstname }}</td>
-                        <td>{{ user.lastname }}</td>
-                        <td>
-                            <a href="{{ path('app_user_show', {'id': user.id}) }}">voir +</a>
-                            <a href="{{ path('app_user_edit', {'id': user.id}) }}">modifier</a>
-                        </td>
+                        <td>{{ user.firstname }} {{ user.lastname }}</td>
+
+                        <div>
+                            <td>
+                                <a href="{{ path('app_user_show', {'id': user.id}) }}">voir +</a>
+                                <a href="{{ path('app_user_edit', {'id': user.id}) }}">modifier</a>
+                            </td>
+                        </div>
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="8">no records found</td>
+                        <td colspan="11">no records found</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
