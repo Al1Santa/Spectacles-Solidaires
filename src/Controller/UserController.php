@@ -160,33 +160,38 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit/password", name="app_user_edit_password", methods={"GET","POST"})
      */
-    public function editPassword(int $id, UserRepository $userRepository, User $user, Request $request): Response
+    public function editPassword(int $id, UserRepository $userRepository, User $user, Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserPassType::class, $user);
         $form->handleRequest($request);
 
         $user = $userRepository->find($id);
 
-        // $password = $user->getPassword();
+        if ($form->isSubmitted() && $form->isValid()) {
+       
+            $plaintextPassword = $user->getPassword();
 
-        // //TODO: récupérer le mot de passe que l'utilisateur entre dans le formulaire
-        // $newPassword = $user->setPassword($password);
+            // hash the password (based on the security.yaml config for the $user class)
+            $hashedPassword = $hasher->hashPassword(
+                $user,
+                $plaintextPassword
+            );
+            $user->setPassword($hashedPassword);
 
-        // //TODO:  comparer le mot de pass de la DB avec celui de l'utilisateur
+           
+            $userRepository->add($user);
 
-        // if ($password === $newPassword && $form->isSubmitted() && $form->isValid()) {
-        //     $password = $newPassword;
-        //     $userRepository->add($password);
+              // ajout d'un flash message
+            // @link https://symfony.com/doc/current/controller.html#flash-messages
+            $this->addFlash(
+                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                // on va pouvoir faire passer plusieurs message avec le même type
+                " Le mot de passe a été modifié." // le message
+            );
 
-        //     $userRepository->add($user);
-        //     return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
-            
-        // }
-
-        
-   
-
-        return $this->render('user/edit_password.html.twig', [
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        }
+                return $this->render('user/edit_password.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
