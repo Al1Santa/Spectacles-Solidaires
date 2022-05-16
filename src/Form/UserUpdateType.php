@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +16,27 @@ class UserUpdateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('firstname')
-            ->add('lastname')
+            ->add('email', EmailType::class, 
+            [
+                "label" => "Votre E-Mail :",
+                "attr" => [
+                    "placeholder" => "saisissez votre email ..."
+                ]
+            ])
+            ->add('firstname', TextType::class, 
+            [
+                "label" => "Prénom:",
+                "attr" => [
+                    "placeholder" => "saisissez votre prénom ..."
+                ]
+            ])
+            ->add('lastname', TextType::class, 
+            [
+                "label" => "Nom :",
+                "attr" => [
+                    "placeholder" => "saisissez votre nom ..."
+                ]
+            ])
             ->add('avatar')
         ;
     }

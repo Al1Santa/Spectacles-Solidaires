@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -26,6 +27,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("show_user")
      * @Groups("show_users")
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
@@ -38,6 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups("show_users")
+     * @Assert\NotBlank
      */
     private $password;
 
@@ -45,6 +51,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=64)
      * @Groups("show_user")
      * @Groups("show_users")
+     * @Assert\NotBlank
+     * 
+     * @Assert\Length(
+     *      min=3,
+     *      max=64, 
+     *      minMessage="Votre Prénom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage="Votre Prénom ne doit pas contenir plus de {{ limit }} caractères")
      */
     private $firstname;
 
@@ -52,6 +65,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=64)
      * @Groups("show_user")
      * @Groups("show_users")
+     * @Assert\NotBlank
+     * Assert\Length(
+     *      min=3,
+     *      max=64, 
+     *      minMessage="Votre Nom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage="Votre Nom ne doit pas contenir plus de {{ limit }} caractères")
      */
     private $lastname;
 

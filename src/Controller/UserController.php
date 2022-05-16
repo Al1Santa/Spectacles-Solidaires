@@ -166,32 +166,46 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         $user = $userRepository->find($id);
+        $oldUser = $user->getPassword();
 
-        if ($form->isSubmitted() && $form->isValid()) {
        
-            $plaintextPassword = $user->getPassword();
 
-            // hash the password (based on the security.yaml config for the $user class)
-            $hashedPassword = $hasher->hashPassword(
-                $user,
-                $plaintextPassword
-            );
-            $user->setPassword($hashedPassword);
+        if ($form->isSubmitted() && $form->isValid() ) 
+            {
+       
+                $plaintextPassword = $user->getPassword();
 
-           
-            $userRepository->add($user);
+                // hash the password (based on the security.yaml config for the $user class)
+                $hashedPassword = $hasher->hashPassword(
+                    $user,
+                    $plaintextPassword
+                );
+                
+                dump($plaintextPassword); // c'est bien le mot de passe que je tape dans mon form
+                dd($hashedPassword); // il est bien hasher 
 
-              // ajout d'un flash message
-            // @link https://symfony.com/doc/current/controller.html#flash-messages
-            $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
-                " Le mot de passe a été modifié." // le message
-            );
+                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-                return $this->render('user/edit_password.html.twig', [
+                    $user->setPassword($hashedPassword);
+        
+                    $userRepository->add($user);
+        
+                    // ajout d'un flash message
+                    // @link https://symfony.com/doc/current/controller.html#flash-messages
+                    $this->addFlash(
+                        'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                        // on va pouvoir faire passer plusieurs message avec le même type
+                        " Le mot de passe a été modifié." // le message
+                    );
+        
+                    return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+                 
+            }  
+
+         
+            // dd($oldUser);
+
+            return $this->render('user/edit_password.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

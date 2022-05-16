@@ -15,9 +15,13 @@ class UserPassType extends AbstractType
     {
         $builder
         ->add('password', PasswordType::class, 
-        [
-            "always_empty" => false
-        ])
+            [
+                "always_empty" => false,
+                "label" => "Mot de passe :",
+                "attr" => [
+                    "placeholder" => "saisissez un mot de passe ..."
+                ]
+            ])
         ;
     }
     public function configureOptions(OptionsResolver $resolver): void

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
@@ -26,18 +27,26 @@ class Event
      * @ORM\Column(type="string", length=64)
      * @Groups("show_category_event")
      * @Groups("show_event")
+     * @Assert\NotBlank
+     * Assert\Length(
+     *      min=3,
+     *      max=64, 
+     *      minMessage="Votre titre doit contenir au moins {{ limit }} caractères",
+     *      maxMessage="Votre titre ne doit pas contenir plus de {{ limit }} caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups("show_event")
+     * @Assert\NotBlank
      */
     private $content;
 
        /**
      * @ORM\Column(type="text")
      * @Groups("show_event")
+     * @Assert\NotBlank
      */
     private $content_2;
 
@@ -80,6 +89,7 @@ class Event
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups("show_event")
+     * @Assert\NotBlank
      */
     private $age;
 
