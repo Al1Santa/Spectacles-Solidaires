@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/back/user")
@@ -160,52 +161,72 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit/password", name="app_user_edit_password", methods={"GET","POST"})
      */
-    public function editPassword(int $id, UserRepository $userRepository, User $user, Request $request, UserPasswordHasherInterface $hasher): Response
+    public function editPassword(int $id, UserRepository $userRepository, User $user, Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(UserPassType::class, $user);
         $form->handleRequest($request);
 
-        $user = $userRepository->find($id);
-        $oldUser = $user->getPassword();
+        // On récupère les données d'origine grâce à getUntOfwork et getOriginalEntityData 
+        $userDb = $em->getUnitOfwork()->getOriginalEntityData($user);
 
-       
+        //$userDb = $userRepository->find($id);
+        // on garde en mémoire le mot de passe original
+        $oldPassword = $userDb['password'];
 
-        if ($form->isSubmitted() && $form->isValid() ) 
-            {
-       
-                $plaintextPassword = $user->getPassword();
+        //dd($this->getUser());
 
-                // hash the password (based on the security.yaml config for the $user class)
-                $hashedPassword = $hasher->hashPassword(
-                    $user,
-                    $plaintextPassword
+        if ($form->isSubmitted() && $form->isValid()) {
+            $plaintextPassword = $user->getPassword();
+
+            // hash the password (based on the security.yaml config for the $user class)
+            $hashedPassword = $hasher->hashPassword(
+                $user,
+                $plaintextPassword
+            );
+
+            // if ($oldPassword != $hashedPassword){
+
+                $passwordValid = $this->encoder->isPasswordValid($user, $hashedPassword
+            );
+                if ($passwordValid) {
+          
+            
+                $user->setPassword($hashedPassword);
+
+           
+                $userRepository->add($user);
+    
+                  // ajout d'un flash message
+                // @link https://symfony.com/doc/current/controller.html#flash-messages
+                $this->addFlash(
+                    'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                    // on va pouvoir faire passer plusieurs message avec le même type
+                    " Le mot de passe a été modifié." // le message
                 );
-                
-                dump($plaintextPassword); // c'est bien le mot de passe que je tape dans mon form
-                dd($hashedPassword); // il est bien hasher 
-
+    
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    
+                  
+            }else{
 
-                    $user->setPassword($hashedPassword);
-        
-                    $userRepository->add($user);
-        
-                    // ajout d'un flash message
-                    // @link https://symfony.com/doc/current/controller.html#flash-messages
-                    $this->addFlash(
-                        'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                        // on va pouvoir faire passer plusieurs message avec le même type
-                        " Le mot de passe a été modifié." // le message
-                    );
-        
-                    return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-                 
-            }  
+        //   dump($hashedPassword);
+            // dd($oldPassword);
 
-         
-            // dd($oldUser);
-
-            return $this->render('user/edit_password.html.twig', [
+            
+                // ajout d'un flash message
+                // @link https://symfony.com/doc/current/controller.html#flash-messages
+                $this->addFlash(
+                    'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                    // on va pouvoir faire passer plusieurs message avec le même type
+                    " Le mot de passe est identique, choissisez un autre mot de passe." // le message
+                );
+                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+               
+            }
+          
+           
+        }
+                return $this->render('user/edit_password.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
