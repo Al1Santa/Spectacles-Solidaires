@@ -178,52 +178,44 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $plaintextPassword = $user->getPassword();
 
-            // hash the password (based on the security.yaml config for the $user class)
-            $hashedPassword = $hasher->hashPassword(
-                $user,
-                $plaintextPassword
-            );
-
-            // if ($oldPassword != $hashedPassword){
-
-                $passwordValid = $this->encoder->isPasswordValid($user, $hashedPassword
-            );
-                if ($passwordValid) {
-          
-            
-                $user->setPassword($hashedPassword);
-
-           
-                $userRepository->add($user);
-    
-                  // ajout d'un flash message
-                // @link https://symfony.com/doc/current/controller.html#flash-messages
-                $this->addFlash(
-                    'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                    // on va pouvoir faire passer plusieurs message avec le même type
-                    " Le mot de passe a été modifié." // le message
-                );
-    
-                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-    
-                  
-            }else{
-
-        //   dump($hashedPassword);
-            // dd($oldPassword);
-
-            
-                // ajout d'un flash message
-                // @link https://symfony.com/doc/current/controller.html#flash-messages
-                $this->addFlash(
-                    'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                    // on va pouvoir faire passer plusieurs message avec le même type
-                    " Le mot de passe est identique, choissisez un autre mot de passe." // le message
-                );
-                return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            // On compare d'abord le nouveau mot de passe non hasher avec l'ancien qui est hasher 
+            // S'ils sont identique alors c'est pas bon sinon on modifie le mdp
+            if (password_verify($plaintextPassword, $oldPassword) )
+            {
+                        // ajout d'un flash message
+                        // @link https://symfony.com/doc/current/controller.html#flash-messages
+                        $this->addFlash(
+                            'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                            // on va pouvoir faire passer plusieurs message avec le même type
+                            " Le mot de passe est identique, choissisez un autre mot de passe." // le message
+                        );
+                        return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
                
+            } else{
+           
+                //    Maintenant qu'on a comparer nos deux mot de passe on va pouvoir envoyé le nouveau mdp ou pas dans la DB
+
+                    // hash the password (based on the security.yaml config for the $user class)
+                    $hashedPassword = $hasher->hashPassword(
+                        $user,
+                        $plaintextPassword
+                    );
+                
+
+                    $user->setPassword($hashedPassword);
+                    $userRepository->add($user);
+
+                    // ajout d'un flash message
+                    // @link https://symfony.com/doc/current/controller.html#flash-messages
+                    $this->addFlash(
+                        'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
+                        // on va pouvoir faire passer plusieurs message avec le même type
+                        " Le mot de passe a été modifié." // le message
+                    );
+
+                    return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);  
             }
-          
+           
            
         }
                 return $this->render('user/edit_password.html.twig', [
