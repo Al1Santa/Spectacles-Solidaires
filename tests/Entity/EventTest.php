@@ -10,7 +10,7 @@ class EventTest extends KernelTestCase
 {
     public function testSomething(): void
     {
-        $category = (new Event())
+        $event = (new Event())
          ->setTitle('coucou')
          ->setContent('coucou')
          ->setContent2('coucou')
@@ -27,7 +27,7 @@ class EventTest extends KernelTestCase
          ->setBonus1('coucou')
          ->setBonus2('coucou');
         self::bootKernel();
-       $error = self::$container->get('validator')->validate($category);
+       $error = self::$container->get('validator')->validate($event);
        $this->assertCount(0, $error);
     }
 }
