@@ -63,6 +63,46 @@ class UserController extends AbstractController
     );
     }
 
+     /**
+     * Récupérer les données d'un seul utilisateur
+     * 
+     * @OA\Response(
+     *     response=200,
+     *     description="Affiches les données d'un seul utilisateur ",
+    
+     * )
+     * 
+     * @OA\Response(
+     *     response=404,
+     *     description="User not found"
+     * )
+     * @param UserRepository $userRepository
+     * @Route("/api/user/{id}", name="app_api_one_user", methods={"GET"})
+     */
+    public function oneUser(int $id, UserRepository $repo): Response
+    {
+        $oneUser = $repo->find($id);
+        return $this->json([
+            'message' => 'Welcome to your new controller!',
+            'path' => 'src/Controller/Api/UserController.php',
+             'user' => $oneUser
+        ],
+        // le HTTP status code, 200
+        Response::HTTP_OK,
+        // les entetes HTTP, par défault
+        [],
+        // dans le context, on précise les groupes de sérialisation
+        // pour limiter les propriétés que l'on veut serializer
+        [
+            "groups" => 
+            [
+                "show_user"
+            ]
+        ]
+            
+    );
+    }
+
 
 
 
