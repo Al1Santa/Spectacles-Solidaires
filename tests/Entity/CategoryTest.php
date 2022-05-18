@@ -11,7 +11,6 @@ class CategoryTest extends KernelTestCase
     public function testSomething(): void
     {
         $category = (new Category())
-         ->getId
          ->setName('coucou');
         //  ->getName();
         self::bootKernel();
