@@ -105,8 +105,10 @@ class UserController extends AbstractController
         //? notre serializer peut faire des erreurs son notre front/utilisateur nous envoi du JSON mal formé
         try { // on espère que le serializerInterface arrive à relire le JSON
             $user = $serializerInterface->deserialize($jsonContent, User::class, 'json');
-            $hashedPassword = $hasher->hashPassword($user);     
+            $plaintextPassword = $user->getPassword();
+            $hashedPassword = $hasher->hashPassword($user, $plaintextPassword);     
             $user->setPassword($hashedPassword);
+
         } catch(Exception $e){ 
             //  si le serializerInterface n'arrive pas à relire le JSON on saute directement dans la partie Catch
             
