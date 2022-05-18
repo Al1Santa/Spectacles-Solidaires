@@ -16,7 +16,7 @@ use App\Form\UserType;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @OA\Tag(name="User")
@@ -66,6 +66,7 @@ class UserController extends AbstractController
 
 
 
+
     /**
      * Crée un utilisateur
      * 
@@ -92,6 +93,7 @@ class UserController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         SerializerInterface $serializerInterface,
+        UserPasswordHasherInterface $hasher,
         ValidatorInterface $validator
         ): JsonResponse
     {
@@ -129,7 +131,8 @@ class UserController extends AbstractController
                 Response::HTTP_UNPROCESSABLE_ENTITY
             );
         }
-
+        $hashedPassword = $hasher->hashPassword($user);     
+        $user->setPassword($hashedPassword);
         // TODO : entityManagerInterface pour l'enregistrement
         $em->persist($user);
         $em->flush();
@@ -148,6 +151,7 @@ class UserController extends AbstractController
             ]
         );
     }
+
 
 
     /**
