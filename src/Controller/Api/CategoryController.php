@@ -24,11 +24,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class CategoryController extends AbstractController
 {
     /**
-     * Liste toutes les categories 
+     * list all categories
      * 
      * @OA\Response(
      *     response=200,
-     *     description="Affiches toutes les categories",
+     *     description="display all categories",
     
      * )
      * 
@@ -47,12 +47,12 @@ class CategoryController extends AbstractController
             'path' => 'src/Controller/Api/CategoryController.php',
             'categories' => $allCategories
         ],
-        // le HTTP status code, 200
+        // The HTTP status code, 200
         Response::HTTP_OK,
-        // les entetes HTTP, par défault
+        // HTTP headers, by default
         [],
-        // dans le context, on précise les groupes de sérialisation
-        // pour limiter les propriétés que l'on veut serializer
+        // in the context, we specify the serialization groups
+        // to limit the properties that we want serializer
         [
             "groups" => 
             [
@@ -63,13 +63,13 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Affiche les categories avec leur évènements
+     * Displya all categories with their events
      * 
      * @Route("/api/category/event", name="app_api_category_event", methods={"GET"})
      * 
      * @OA\Response(
      *     response=200,
-     *     description="Affichesles catégorie avec leur evenement",
+     *     description="Displya all categories with their events",
     
      * )
      * 
@@ -87,12 +87,12 @@ class CategoryController extends AbstractController
             'path' => 'src/Controller/Api/CategoryController.php',
             'categories' => $allCategories
         ],
-        // le HTTP status code, 200
+        // The HTTP status code, 200
         Response::HTTP_OK,
-        // les entetes HTTP, par défault
+        // HTTP headers, by default
         [],
-        // dans le context, on précise les groupes de sérialisation
-        // pour limiter les propriétés que l'on veut serializer
+        // in the context, we specify the serialization groups
+        // to limit the properties that we want serializer
         [
             "groups" => 
             [

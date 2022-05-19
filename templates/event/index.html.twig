@@ -8,10 +8,10 @@
             <h1>Liste des évènements</h1>
         </div>
                 {# 
-            pour acceder a des infos venant de l'application
-            on a à notre dsposition la variable 'app'
-            et pour les flashMessage a une méthode flashes('type')
-            on a dit que c'était un tableau, on peut donc boucler dessus
+            to access information from the application
+                we have at our disposal the variable 'app'
+                and for flashMessage has a method flashes('type')
+                we said it was an array, so we can loop over it
             #}
             {% for message in app.flashes('notice') %}
                 <div class="alert alert-success" role="alert">

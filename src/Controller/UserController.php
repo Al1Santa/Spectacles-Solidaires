@@ -52,12 +52,12 @@ class UserController extends AbstractController
            
             $userRepository->add($user);
 
-              // ajout d'un flash message
+              // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
-                " L'utilisateur a bien été crée." // le message
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
+                " L'utilisateur a bien été crée." // the message
             );
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -90,12 +90,12 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user);
 
-                 // ajout d'un flash message
+                 // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
-                " L'utilisateur a bien été modifié." // le message
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
+                " L'utilisateur a bien été modifié." // the message
             );
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -115,12 +115,12 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user);
 
-                 // ajout d'un flash message
+                 // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
-                " L'utilisateur a bien été supprimé." // le message
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
+                " L'utilisateur a bien été supprimé." // the message
             );
 
         }
@@ -166,34 +166,33 @@ class UserController extends AbstractController
         $form = $this->createForm(UserPassType::class, $user);
         $form->handleRequest($request);
 
-        // On récupère les données d'origine grâce à getUntOfwork et getOriginalEntityData 
+        // We recover the original data thanks to getUntOfwork and getOriginalEntityData 
         $userDb = $em->getUnitOfwork()->getOriginalEntityData($user);
 
         //$userDb = $userRepository->find($id);
-        // on garde en mémoire le mot de passe original
+        // remember the original password
         $oldPassword = $userDb['password'];
 
-        //dd($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $plaintextPassword = $user->getPassword();
 
-            // On compare d'abord le nouveau mot de passe non hasher avec l'ancien qui est hasher 
-            // S'ils sont identique alors c'est pas bon sinon on modifie le mdp
+            // We first compare the new non-hash password with the old one which is hash
+            // If they are identical then it is not good otherwise we modify the password
             if (password_verify($plaintextPassword, $oldPassword) )
             {
-                        // ajout d'un flash message
+                        // Add FlashMessage
                         // @link https://symfony.com/doc/current/controller.html#flash-messages
                         $this->addFlash(
-                            'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                            // on va pouvoir faire passer plusieurs message avec le même type
-                            " Le mot de passe est identique, choissisez un autre mot de passe." // le message
+                            'notice', // the type of message is a key, so we can put whatever we want in it
+                            // we will be able to send several messages with the same types
+                            " Le mot de passe est identique, choissisez un autre mot de passe." // the message
                         );
                         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
                
             } else{
            
-                //    Maintenant qu'on a comparer nos deux mot de passe on va pouvoir envoyé le nouveau mdp ou pas dans la DB
+                //    Now that we have compared our two passwords we will be able to send the new password or not in the DB
 
                     // hash the password (based on the security.yaml config for the $user class)
                     $hashedPassword = $hasher->hashPassword(
@@ -208,9 +207,9 @@ class UserController extends AbstractController
                     // ajout d'un flash message
                     // @link https://symfony.com/doc/current/controller.html#flash-messages
                     $this->addFlash(
-                        'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                        // on va pouvoir faire passer plusieurs message avec le même type
-                        " Le mot de passe a été modifié." // le message
+                        'notice', // the type of message is a key, so we can put whatever we want in it
+                        // we will be able to send several messages with the same type
+                        " Le mot de passe a été modifié." // the message
                     );
 
                     return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);  

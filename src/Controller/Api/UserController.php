@@ -24,11 +24,11 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends AbstractController
 {
     /**
-     * Liste tous les utilisateurs
+     * List all users
      * 
      * @OA\Response(
      *     response=200,
-     *     description="Affiches tous les utilisateurs",
+     *     description="Display all users",
     
      * )
      * 
@@ -47,12 +47,12 @@ class UserController extends AbstractController
             'path' => 'src/Controller/Api/UserController.php',
              'users' => $allUser
         ],
-        // le HTTP status code, 200
-        Response::HTTP_OK,
-        // les entetes HTTP, par défault
+         // The HTTP status code, 200
+         Response::HTTP_OK,
+         // HTTP headers, by default
         [],
-        // dans le context, on précise les groupes de sérialisation
-        // pour limiter les propriétés que l'on veut serializer
+         // in the context, we specify the serialization groups
+        // to limit the properties that we want serializer
         [
             "groups" => 
             [
@@ -67,7 +67,7 @@ class UserController extends AbstractController
 
 
     /**
-     * Crée un utilisateur
+     * Create user
      * 
     * @Route("/api/user/create", name="app_api_user_create", methods={"POST"})
      * 
@@ -83,9 +83,9 @@ class UserController extends AbstractController
      *      )
      * )
      * 
-     * @param Request $request infos venant de mon front/utilisateur
+     * @param Request $request info from my front/user
      * @param EntityManagerInterface $em
-     * @param SerializerInterface $serializerInterface Permet de transformer du JSON en Objet
+     * @param SerializerInterface $serializerInterface Allows you to transform JSON into an Object
      * @return JsonResponse
      */
     public function create(
@@ -95,48 +95,47 @@ class UserController extends AbstractController
         ValidatorInterface $validator
         ): JsonResponse
     {
-        // TODO : Request parce que je vais recevoir des données
+        // TODO : Request because I will receive data
         $jsonContent = $request->getContent();
-        // dump($jsonContent);
-        // je transforme ces données en Entité
-        //! la deserialisation ne respecte aucune règle (Assert sur notre entité)
-        //? notre serializer peut faire des erreurs son notre front/utilisateur nous envoi du JSON mal formé
-        try { // on espère que le serializerInterface arrive à relire le JSON
+        // I transform this data into Entity
+        //! the deserialization does not respect any rule (Assert on our entity)
+        //? our serializer can make errors its our front/user sends us malformed JSON
+        try { //   we hope that the serializerInterface manages to reread the JSON
             $user = $serializerInterface->deserialize($jsonContent, User::class, 'json');
         } catch(Exception $e){ 
-            //  si le serializerInterface n'arrive pas à relire le JSON on saute directement dans la partie Catch
+            //  if the serializerInterface cannot read the JSON again, we jump directly to the Catch part
             
-            // erreur 422 : on ne peut pas traiter les infos qu'ils nous a donné
+            // error 422: we cannot process the information they gave us
             return $this->json(
                 "JSON mal formé",
                 Response::HTTP_UNPROCESSABLE_ENTITY
             );
         }
+        
             
-        // TODO : utiliser les Assert de notre entité pour valider la deserialisation
-        // le validator nous renvoit la liste de toutes les erreurs
+        // TODO : use the Asserts of our entity to validate the deserialization
+        // the validator returns the list of all errors
         $errorList = $validator->validate($user);
 
-        //je teste si il y a des erreurs 
+        //I check if there are errors
         if (count($errorList) > 0){
-            // j'ai des erreurs, l'utilisateur/front n'a pas respecter les Assert
-            //? version bourrine : je transforme le tableau en chaine
+            // I have errors, the user/front did not respect the Asserts
+            //?bullshit version: I transform the array into a string
             $errors = (string) $errorList;
 
-            // erreur 422 : on ne peut pas traiter les infos qu'ils nous a donné
+            // error 422: we cannot process the information they gave us
             return $this->json(
                 $errors,
                 Response::HTTP_UNPROCESSABLE_ENTITY
             );
         }
-
-        // TODO : entityManagerInterface pour l'enregistrement
+        // TODO : entityManagerInterface for save
         $em->persist($user);
         $em->flush();
-        // TODO : return json avec le bon code 201 (created)
+        // TODO : return json with good code 201 (created)
         return $this->json(
             $user,
-            // je précise que tout est OK de mon coté en précisant que la cration c'est bien passé
+            // I specify that everything is OK on my side by specifying that the creation is well past
             // 201
             Response::HTTP_CREATED,
             [],
@@ -151,7 +150,7 @@ class UserController extends AbstractController
 
 
     /**
-     * Modifier les données utilisateur
+     * Modify user data
      * 
      * @Route("/api/user/update/{id}", name="app_api_user_update", methods={"PUT"}, requirements={"id":"\d+"})
      * 
@@ -173,7 +172,7 @@ class UserController extends AbstractController
      * )
      * @param UserRepository $userRepository
      *
-     * @param Request $request infos venant de mon front/utilisateur
+     * @param Request $request info from my front/user
      * @param EntityManagerInterface $em
      * @param SerializerInterface $serializerInterface Permet de transformer du JSON en Objet
      * @return JsonRespons
@@ -182,7 +181,7 @@ class UserController extends AbstractController
     {
 
         
-     // TODO : Request parce que je vais recevoir des données
+     // TODO : Request because I will receive data
      $jsonContent = $request->getContent();
 
      $updatedUser = json_decode($jsonContent);
@@ -198,10 +197,10 @@ class UserController extends AbstractController
 
      $em->flush();
 
-     // TODO : return json avec le bon code 201 (created)
+     // TODO : return json with good code 201 (created)
      return $this->json(
          $user,
-         // je précise que tout est OK de mon coté en précisant que la cration c'est bien passé
+         // I specify that everything is OK on my side by specifying that the creation went well
          // 201
          Response::HTTP_CREATED,
          [],
@@ -215,7 +214,7 @@ class UserController extends AbstractController
  }
 
  /**
-     * Supprimer un utilisateur
+     * Delete a user
      * @Route("/api/user/delete/{id}", name="delete", methods={"DELETE"}, requirements={"id":"\d+"})
      * 
      * @OA\RequestBody(
@@ -235,7 +234,7 @@ class UserController extends AbstractController
      *     description="User not found"
      * )
      * 
-     * @param Request $request infos venant de mon front/utilisateur
+     * @param Request $request info from my front/user
      * @param EntityManagerInterface $em
      * @return JsonRespons
      */
@@ -252,10 +251,10 @@ class UserController extends AbstractController
         }
       
 
-         // TODO : return json avec le bon code 201 (created)
+         // TODO : return json with good code 201 (created)
      return $this->json(
         $user,
-        // je précise que tout est OK de mon coté en précisant que la cration c'est bien passé
+        // I specify that everything is OK on my side by specifying that the creation went well
         // 201
         Response::HTTP_CREATED,
         [],
