@@ -51,17 +51,17 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # page édition création 
+        # edit and create page
         - { path: ^/back/.+/(create|edit), roles: ROLE_ADMIN}
 
-        # suppression que pour les admins
+        # deletion only for administrators
         - { path: ^/back/.+/\d+$, roles: ROLE_ADMIN, methods: [POST]}
 
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/doc, roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/back/login, roles: PUBLIC_ACCESS }
-        # back office pour les managers, uniquement en consultation
+        # back office for managers only in consultation
         - { path: ^/back/, roles: ROLE_MANAGER }
 
         # - { path: ^/admin, roles: ROLE_ADMIN }
@@ -71,10 +71,10 @@ security:
 
     role_hierarchy:
         ROLE_DEV : ROLE_ADMIN
-        # si j'ai le role ADMIN : j'ai aussi le role MANAGER
+        # if I have the ADMIN role : I also have the MANAGER role
         ROLE_ADMIN: ROLE_MANAGER
-        # si j'ai le role MANAGER : j'ai aussi le role USER
-        # si j'ai le role ADMIN: j'ai MANAGER ET USER
+        # if I have the  MANAGER role : I also have the role USER
+        # if I have the ADMIN role : I have MANAGER AND USER
         ROLE_MANAGER: ROLE_USER
 
 when@test:

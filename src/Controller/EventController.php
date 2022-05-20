@@ -37,11 +37,11 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $eventRepository->add($event);
 
-              // ajout d'un flash message
+              // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
                 'Votre évènement a bien été crée.' // le message
             );
 
@@ -75,11 +75,11 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $eventRepository->add($event);
 
-              // ajout d'un flash message
+              // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
                 'Votre évènement a bien été modifié.' // le message
             );
 
@@ -100,12 +100,12 @@ class EventController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->request->get('_token'))) {
             $eventRepository->remove($event);
 
-              // ajout d'un flash message
+              // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
-                'Votre évènement a bien été supprimé.' // le message
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
+                'Votre évènement a bien été supprimé.' // the message
             );
         }
 

@@ -86,8 +86,8 @@ class EventType extends AbstractType
             [
                 'class' => Category::class,
                 // https://symfony.com/doc/current/reference/forms/types/entity.html#choice-label
-                // Si j'ai plusieur champs : concatenation à faire
-                // je créer une function dans l'entité qui le fait
+                // If I have multiple fields : concatenation to do
+                // I create a function in the entity that does this
                 'choice_label' => 'name', // va apeller getName()
                     "multiple" => true,
                 // https://symfony.com/doc/current/reference/forms/types/entity.html#expanded

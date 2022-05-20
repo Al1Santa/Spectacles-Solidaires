@@ -37,12 +37,12 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->add($category);
 
-            // ajout d'un flash message
+            // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
-                'Votre Category a bien été enregistrée.' // le message
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
+                'Votre Category a bien été enregistrée.' // the message
             );
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
@@ -75,11 +75,11 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->add($category);
 
-            // ajout d'un flash message
+            // Add FlashMessage
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
                 'Votre Catégorie a bien été modifiée.' // le message
             );
 
@@ -103,8 +103,8 @@ class CategoryController extends AbstractController
               // ajout d'un flash message
             // @link https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash(
-                'notice', // le type de message est une clé, on peut donc y mettre ce que l'on veux
-                // on va pouvoir faire passer plusieurs message avec le même type
+                'notice', // the type of message is a key, so we can put whatever we want in it
+                // we will be able to send several messages with the same type
                 'Votre Catégorie a bien été supprimé.' // le message
             );
         }

@@ -26,7 +26,7 @@ class CategoryType extends AbstractType
             //     // https://symfony.com/doc/current/reference/forms/types/entity.html#choice-label
             //     // Si j'ai plusieur champs : concatenation à faire
             //     // je créer une function dans l'entité qui le fait
-            //     'choice_label' => 'title', // va apeller getTitle()
+            //     'choice_label' => 'title', // will call getTitle()
             //     "multiple" => true,
             //     // https://symfony.com/doc/current/reference/forms/types/entity.html#expanded
             //     // radio buttons or checkboxes

@@ -17,17 +17,17 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 class EventController extends AbstractController
 {
     /**
-     * Liste toutes les evenements 
+     * List all events 
      * 
      * @OA\Response(
      *     response=200,
-     *     description="Affiches tous les evenements",
+     *     description="Display ll events",
     
      * )
      * 
      * @OA\Response(
      *     response=404,
-     *     description="evenement not found"
+     *     description="event not found"
      * )
      * @param EventRepository $eventRepository
      * @Route("/api/event", name="app_api_event", methods={"GET"})
@@ -40,12 +40,12 @@ class EventController extends AbstractController
             'path' => 'src/Controller/Api/EventController.php',
             'events' => $allEvents
         ], 
-         // le HTTP status code, 200
-        Response::HTTP_OK,
-        // les entetes HTTP, par défault
+         // The HTTP status code, 200
+         Response::HTTP_OK,
+         // HTTP headers, by default
         [],
-        // dans le context, on précise les groupes de sérialisation
-        // pour limiter les propriétés que l'on veut serializer
+        //// in the context, we specify the serialization groups
+        // to limit the properties that we want serializer
         [
             "groups" => 
             [
