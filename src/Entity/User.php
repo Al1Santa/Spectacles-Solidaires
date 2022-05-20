@@ -36,8 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups("show_user")
-     * @Groups("show_users")
      */
     private $roles = [];
 
