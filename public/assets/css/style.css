@@ -12,7 +12,7 @@ header{
     background-color: #da895b;
     position: fixed;
     width: 7em;
-    height: 100vh;
+    height: 500vh;
 }
 .navigation{
     text-align: center;
@@ -69,10 +69,24 @@ header{
 .row{
     border: #DF966D 3px solid;
     border-radius: 30px;
-    box-shadow: #DF966D 10px 5px 5px;
-    width: auto;
+    width: 95%;
     padding: 3em 2em 3em 2em;
     margin: 0 10px 0 10px;
+}
+
+@media screen and (min-width: 426px){
+    .row{
+        box-shadow: #DF966D 10px 5px 5px;
+        width: 60%;
+        padding-left: 100px;
+    }
+}
+
+@media screen and (min-width: 769px){
+    .row{
+        width: 500px;
+        padding-left: 140px;
+    }
 }
 
 /* BODY */
@@ -93,7 +107,39 @@ body > h1{
 #body_title{
     background-color: #DF966D;
     text-align: center;
-    padding: 30px 0 30px 0;
+    padding: 30px 20px 30px 20px;
+    width: 80vh;
+}
+
+@media screen and (min-width: 426px){
+    #body_title{
+        width: 100%;
+    }
+}
+
+#eventTitle{
+    background-color: #DF966D;
+    text-align: center;
+    padding: 30px 20px 30px 20px;
+    width: 100vh;
+}
+
+@media screen and (min-width: 426px){
+    #eventTitle{
+        width: 125vh;
+    }
+}
+
+@media screen and (min-width: 769px){
+    #eventTitle{
+        width: 175vh;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    #eventTitle{
+        width: 215vh;
+    }
 }
 
 #body_create{
@@ -121,19 +167,25 @@ body > h1{
 
 #body_delete{
     border: 1px black solid;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 64, 64);
     font-size: 20px;
     padding: 0.3em;
     text-decoration: none;
     color: black;
     cursor: pointer;
     border-radius: 10px;
-    margin-left: 20px;
+    margin-left: 30px;
+}
+
+@media screen and (min-width: 1023px){
+    #body_delete{
+        margin-left: 35px;
+    }
 }
 
 #body_formSave{
     border: 1px black solid;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(48, 156, 189);
     font-size: 20px;
     padding: 0.3em;
     text-decoration: none;
@@ -157,19 +209,33 @@ body > h1{
 
 #body_table a:first-child{
     background-color: #209a00;
-    margin-bottom: 10px;
     justify-content: center;
+    width: 90px;
+    margin-top: -40px;
 }
 
 #body_table a:last-child{
     background-color: orange;
     justify-content: center;
+    width: 90px;
+    margin-top: -30px;
 }
 
 #body_table{
     background-color: #eff0f4;
-    padding: 0 20px 0 20px;
     white-space: pre-wrap;
+    width: 100%;
+}
+
+.eventTable td{
+    padding: 0 20px 0 20px;
+    width: 20px;
+}
+
+@media screen and (min-width: 769px){
+    .eventTable th{
+        width: 150px;
+    }
 }
 
 .btn-actions{
@@ -186,9 +252,7 @@ body > h1{
 
 #categoryActions a:last-child{
     margin-bottom: 10px;
-}
-
-
+}   
 
 /* FORM  */
 
