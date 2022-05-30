@@ -10,7 +10,24 @@ Certains spectacles sont interactifs et permettent aux enfants de participer sou
 
 Ce catalogue est susceptible d'évoluer lorsque de nouveaux spectacles sont créés par les artistes.
 
-# Objectif
+# Table of Contents  
+
+- [Présentation](#Présentation)
+- [Objectifs](#objectifs)
+- [Liste des technologies](#liste-des-technologies)
+- [Arborescence graphique](#arborescence-graphique)
+- [User Stories](#user-stories)
+- [API](#api)
+ 
+ <a name="Présentation"/>
+<a name="Objectifs"/>
+<a name="Liste-des-technologies"/>
+<a name="Arborescence-graphique"/>
+<a name="User-Stories"/>
+<a name="API"/>
+
+
+# Objectifs
 
 - La programmatrice d’événements a besoin d’un site qui lui permettra de présenter la programmation des spectacles solidaires pour jeune public.
 
@@ -27,7 +44,7 @@ Ce catalogue est susceptible d'évoluer lorsque de nouveaux spectacles sont cré
  - Symfony : C’est un ensemble de composants PHP ainsi qu'un framework MVC. Il fournit des fonctionnalités modulables et adaptables qui permettent de faciliter et d’accélérer le développement d'un site web.
  - PHP : (Hypertext Preprocessor) principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP.
 
-# Arborescence graphique :
+# Arborescence graphique
 
 ![image](https://user-images.githubusercontent.com/94828283/170984243-041a8222-9ca8-4cfb-b533-6c07fbd515c0.png)
 
@@ -41,5 +58,40 @@ Admin | me connecter | accéder au back-office
 Admin | ajouter un événement | afin de renouveler le catalogue du site
 Admin | modifier un événement | afin de mettre à jour les spectacles
 Admin | supprimer un événement | afin de retirer un spectacle du catalogue
+
+# API 
+
+sur le local écrire directement /api/doc exemple : http://localhost:8080/api/doc
+
+![image](https://user-images.githubusercontent.com/94828283/170988778-d366090b-e3f4-423c-a8d6-be5089fc6d52.png)
+
+ - Allez dans My App API Auth
+ - cliquer sur le menu déroulant :
+
+![image](https://user-images.githubusercontent.com/94828283/170988999-02d1d906-8721-4c1f-bb02-5b793498a718.png)
+
+ - ensuite sur try it out, cela permet d'entrer un username et un password :
+
+ ![image](https://user-images.githubusercontent.com/94828283/170989269-f36e55b5-6588-4bce-84a3-2201dc7aea20.png)
+ 
+ - cliquer sur executer pour reçevoir le token :
+
+![image](https://user-images.githubusercontent.com/94828283/170989462-3801f2f3-1ced-41ef-96b0-6314ed3ac451.png)
+
+
+ - Retourner tout en haut de la page pour cliquer sur Authorize et coller le token : 
+
+![image](https://user-images.githubusercontent.com/94828283/170989671-8d25cd07-4442-4eb2-b3c3-0127521bc18a.png)
+
+ - les cadenas sont noir, vous avez accès au chemin de l'API :
+
+![image](https://user-images.githubusercontent.com/94828283/170989969-a6788c4d-8207-4b12-b350-6dc6b030a126.png)
+
+
+
+
+
+
+
 
 
