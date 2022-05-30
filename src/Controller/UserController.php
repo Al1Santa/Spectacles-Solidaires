@@ -149,7 +149,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user);
-            return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
+             // Add FlashMessage
+                        // @link https://symfony.com/doc/current/controller.html#flash-messages
+                        $this->addFlash(
+                            'notice', // the type of message is a key, so we can put whatever we want in it
+                            // we will be able to send several messages with the same types
+                            " Le profil à bien été modifié." // the message
+                        );
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/edit_profil.html.twig', [
