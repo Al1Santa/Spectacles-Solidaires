@@ -92,8 +92,8 @@ sur le local écrire directement /api/doc exemple : http://localhost:8080/api/do
 
   Développeur back end ayant participé au projet : 
   
-  - @Al1Santa en tant que Lead DevBack
-  - @Brazake en tant que Scrum Master
+  - Alain Santamaria en tant que Lead DevBack (github : @Al1Santa)
+  - Brandon Alexandre en tant que Scrum Master (github : @Brazake)
 
 
 
