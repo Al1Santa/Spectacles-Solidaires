@@ -18,14 +18,14 @@ Ce catalogue est susceptible d'évoluer lorsque de nouveaux spectacles sont cré
 - [Arborescence graphique](#arborescence-graphique)
 - [User Stories](#user-stories)
 - [API](#api)
- 
+- [DEV](#dev)
  <a name="Présentation"/>
 <a name="Objectifs"/>
 <a name="Liste-des-technologies"/>
 <a name="Arborescence-graphique"/>
 <a name="User-Stories"/>
 <a name="API"/>
-
+<a name="DEV"/>
 
 # Objectifs
 
@@ -88,8 +88,12 @@ sur le local écrire directement /api/doc exemple : http://localhost:8080/api/do
 ![image](https://user-images.githubusercontent.com/94828283/170989969-a6788c4d-8207-4b12-b350-6dc6b030a126.png)
 
 
+# DEV
 
-
+  Développeur back end ayant participé au projet : 
+  
+  - @Al1Santa en tant que Lead DevBack
+  - @Brazake en tant que Scrum Master
 
 
 
