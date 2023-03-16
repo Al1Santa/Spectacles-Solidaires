@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
+        "easycorp/easyadmin-bundle": "^4.6",
         "lexik/jwt-authentication-bundle": "^2.15",
         "nelmio/api-doc-bundle": "^4.9",
         "sensio/framework-extra-bundle": "^6.2",
@@ -84,7 +85,7 @@
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
         "symfony/maker-bundle": "^1.42",
-        "symfony/phpunit-bridge": "^6.0",
+        "symfony/phpunit-bridge": "^6.2",
         "symfony/stopwatch": "5.4.*",
         "symfony/var-dumper": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"

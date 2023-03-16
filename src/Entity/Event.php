@@ -95,18 +95,21 @@ class Event
 
      /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      * @Groups("show_event")
      */
     private $technique_1;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      * @Groups("show_event")
      */
     private $technique_2;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      * @Groups("show_event")
      */
     private $technique_3;
